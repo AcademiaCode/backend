@@ -1,0 +1,1447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CodeCampus REST API",
+        "version": "1.0.0",
+        "description": "CodeCampus REST API"
+    },
+    "servers": [
+        {
+            "url": "https://academiacode-be.vercel.app/api"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Users",
+            "description": "Pengguna"
+        },
+        {
+            "name": "Problems",
+            "description": "Soal pemrograman"
+        },
+        {
+            "name": "Default codes",
+            "description": "Code template untuk soal pemrograman"
+        },
+        {
+            "name": "Programming language",
+            "description": "Bahasa pemrograman"
+        },
+        {
+            "name": "Submissions",
+            "description": "Jawaban soal pemrograman"
+        },
+        {
+            "name": "Problem suggestion",
+            "description": "Memberi saran soal pemrograman baru"
+        },
+        {
+            "name": "Discussions",
+            "description": "Diskusi"
+        },
+        {
+            "name": "Comments",
+            "description": "Komentar"
+        },
+        {
+            "name": "Leaderboard",
+            "description": "Leaderboard"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "Mendapatkan data pengguna",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data pengguna berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan"
+                                                        },
+                                                        "fullname": {
+                                                            "type": "string",
+                                                            "example": "Budi Setiawan"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Users"],
+                "summary": "Memperbarui data pengguna",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "budisetiawan"
+                                    },
+                                    "fullname": {
+                                        "type": "string",
+                                        "example": "Budi Setiawan"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "example": "Programmer"
+                                    },
+                                    "github": {
+                                        "type": "string",
+                                        "example": "https://github.com/budisetiawan/"
+                                    },
+                                    "linkedin": {
+                                        "type": "string",
+                                        "example": "https://www.linkedin.com/in/budi-setiawan/"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data pengguna berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan"
+                                                        },
+                                                        "fullname": {
+                                                            "type": "string",
+                                                            "example": "Budi Setiawan"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/register": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Mendaftarkan pengguna baru",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "budisetiawan"
+                                    },
+                                    "fullname": {
+                                        "type": "string",
+                                        "example": "Budi Setiawan"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "budisetiawan@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Rahasia123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pengguna baru berhasil didaftarkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan"
+                                                        },
+                                                        "fullname": {
+                                                            "type": "string",
+                                                            "example": "Budi Setiawan"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        }
+                                                    }
+                                                },
+                                                "jwt": {
+                                                    "type": "string",
+                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTAzNmMzLWU5MDMtNDNjMC05ZTI2LWVhY2QzMWExYjYyMyIsImlhdCI6MTc2MTg4MDUyMywiZXhwIjoxNzY0NDcyNTIzfQ.4StJDhCVWQ5EdUWcztaAXz6jTD4bpzQ2DMpLLUjAluc"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Memasukkan pengguna ke sistem",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "budisetiawan@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Rahasia123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pengguna berhasil masuk ke sistem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan"
+                                                        },
+                                                        "fullname": {
+                                                            "type": "string",
+                                                            "example": "Budi Setiawan"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
+                                                        }
+                                                    }
+                                                },
+                                                "jwt": {
+                                                    "type": "string",
+                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTAzNmMzLWU5MDMtNDNjMC05ZTI2LWVhY2QzMWExYjYyMyIsImlhdCI6MTc2MTg4MDUyMywiZXhwIjoxNzY0NDcyNTIzfQ.4StJDhCVWQ5EdUWcztaAXz6jTD4bpzQ2DMpLLUjAluc"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problems": {
+            "get": {
+                "tags": ["Problems"],
+                "summary": "Mendapatkan daftar soal pemrograman",
+                "responses": {
+                    "200": {
+                        "description": "Daftar soal pemrograman",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "problems": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Faktorial"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                            },
+                                                            "difficulty": {
+                                                                "type": "string",
+                                                                "example": "Mudah"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problems/{problem_id}": {
+            "get": {
+                "tags": ["Problems"],
+                "summary": "Mendapatkan soal pemrograman berdasarkan id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "problem_id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Soal pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "problem": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Faktorial"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                        },
+                                                        "difficulty": {
+                                                            "type": "string",
+                                                            "example": "Mudah"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/default_codes/problems/{problem_id}": {
+            "get": {
+                "tags": ["Default codes"],
+                "summary": "Mendapatkan daftar code template berdasarkan soal pemrograman",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "problem_id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar code template berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "default_codes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "code": {
+                                                                "type": "string",
+                                                                "example": "function factorial(n){\n\n}"
+                                                            },
+                                                            "programming_language": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "javascript"
+                                                                    },
+                                                                    "version": {
+                                                                        "type": "string",
+                                                                        "example": "18.15.0"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programming_languages": {
+            "get": {
+                "tags": ["Programming language"],
+                "summary": "Mendapatkan daftar bahasa pemrograman",
+                "responses": {
+                    "200": {
+                        "description": "Daftar bahasa pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "programming_languages": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "javascript"
+                                                            },
+                                                            "version": {
+                                                                "type": "string",
+                                                                "example": "18.15.0"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/submissions": {
+            "post": {
+                "tags": ["Submissions"],
+                "summary": "Membuat jawaban soal pemrograman",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "code": {
+                                        "type": "string",
+                                        "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
+                                    },
+                                    "problem_id": {
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                    },
+                                    "programming_language_id": {
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Jawaban soal pemrograman berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "submission": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "code": {
+                                                            "type": "string",
+                                                            "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
+                                                        },
+                                                        "status": {
+                                                            "type": "boolean",
+                                                            "example": true
+                                                        },
+                                                        "problem": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "Faktorial"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string",
+                                                                    "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                                },
+                                                                "difficulty": {
+                                                                    "type": "string",
+                                                                    "example": "Mudah"
+                                                                }
+                                                            }
+                                                        },
+                                                        "programming_language": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "javascript"
+                                                                },
+                                                                "version": {
+                                                                    "type": "string",
+                                                                    "example": "18.15.0"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/submissions/users": {
+            "get": {
+                "tags": ["Submissions"],
+                "summary": "Mendapatkan daftar jawaban soal pemrograman berdasarkan pengguna",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar jawaban soal pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "submissions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "code": {
+                                                                "type": "string",
+                                                                "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
+                                                            },
+                                                            "status": {
+                                                                "type": "boolean",
+                                                                "example": true
+                                                            },
+                                                            "problem": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "title": {
+                                                                        "type": "string",
+                                                                        "example": "Faktorial"
+                                                                    },
+                                                                    "description": {
+                                                                        "type": "string",
+                                                                        "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                                    },
+                                                                    "difficulty": {
+                                                                        "type": "string",
+                                                                        "example": "Mudah"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "programming_language": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "javascript"
+                                                                    },
+                                                                    "version": {
+                                                                        "type": "string",
+                                                                        "example": "18.15.0"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problem_suggestions": {
+            "post": {
+                "tags": ["Problem suggestion"],
+                "summary": "Memberikan saran soal pemrograman baru",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Fibonacci"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Buatlah function yang bisa menghasilkan nilai fibonacci dari sebuah bilangan"
+                                    },
+                                    "difficulty": {
+                                        "type": "string",
+                                        "example": "Sedang"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Saran soal pemrograman baru berhasil diberikan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "problem_suggestion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": ""
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Fibonacci"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "Buatlah function yang bisa menghasilkan nilai fibonacci dari sebuah bilangan"
+                                                        },
+                                                        "difficulty": {
+                                                            "type": "string",
+                                                            "example": "Sedang"
+                                                        },
+                                                        "suggester": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budisetiawan"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/discussions": {
+            "post": {
+                "tags": ["Discussions"],
+                "summary": "Membuat diskusi baru",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Diskusi baru berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "discussion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budisetiawan"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Discussions"],
+                "summary": "Mendapatkan daftar diskusi",
+                "responses": {
+                    "200": {
+                        "description": "Daftar diskusi berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "discussions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "content": {
+                                                                "type": "string"
+                                                            },
+                                                            "creator": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "username": {
+                                                                        "type": "string",
+                                                                        "example": "budisetiawan"
+                                                                    },
+                                                                    "fullname": {
+                                                                        "type": "string",
+                                                                        "example": "Budi Setiawan"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/discussions/{discussion_id}":{
+            "get": {
+                "tags": ["Discussions"],
+                "summary": "Mendapatkan diskusi berdasarkan id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "discussion_id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diskusi berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "discussion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budisetiawan"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Discussions"],
+                "summary": "Menghapus diskusi berdasarkan id",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diskusi berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments": {
+            "post": {
+                "tags": ["Comments"],
+                "summary": "Mengirimkan komentar",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "discussion_id": {
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Komentar berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "comment": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budisetiawan"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/discussions/{discussion_id}": {
+            "get": {
+                "tags": ["Comments"],
+                "summary": "Mendapatkan daftar komentar berdasarkan diskusi",
+                "responses": {
+                    "200": {
+                        "description": "Daftar komentar berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "comments": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "content": {
+                                                                "type": "string"
+                                                            },
+                                                            "creator": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "username": {
+                                                                        "type": "string",
+                                                                        "example": "budisetiawan"
+                                                                    },
+                                                                    "fullname": {
+                                                                        "type": "string",
+                                                                        "example": "Budi Setiawan"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/{comment_id}": {
+            "delete": {
+                "tags": ["Comments"],
+                "summary": "Menghapus komentar berdasarkan id",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Komentar berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/leaderboard": {
+            "get": {
+                "tags": ["Leaderboard"],
+                "summary": "Mendapatkan daftar leaderboard",
+                "responses": {
+                    "200": {
+                        "description": "Daftar leaderboard berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "leaderboard": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "username": {
+                                                                "type": "string",
+                                                                "example": "budisetiawan"
+                                                            },
+                                                            "fullname": {
+                                                                "type": "string",
+                                                                "example": "Budi Setiawan"
+                                                            },
+                                                            "submissions": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "accepeted_submissions": {
+                                                                        "type": "integer",
+                                                                        "example": 5
+                                                                    },
+                                                                    "total_problems": {
+                                                                        "type": "integer",
+                                                                        "example": 7
+                                                                    },
+                                                                    "Mudah": {
+                                                                        "type": "integer",
+                                                                        "example": 3
+                                                                    },
+                                                                    "Sedang": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "Sulit": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    }
+                                                                }
+                                                            },
+                                                            "accepted_problem_suggestions": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "Mudah": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "Sedang": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    },
+                                                                    "Sulit": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    }
+                                                                }
+                                                            },
+                                                            "total_points": {
+                                                                "type": "integer",
+                                                                "example": 9
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
